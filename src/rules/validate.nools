@@ -1,0 +1,48 @@
+import('./utils.nools')
+
+rule "terminate group" {
+    salience: -100
+    when {
+        $v: ValidPuzzle
+    }
+    then{
+        logger.log("Validation complete. [isValid=" + $v.isValid + "]" );
+        halt();
+    }
+}
+
+rule "duplicate in cell row" {
+    when{
+        $valid: ValidPuzzle;
+        $c: Cell $c.value !== null {value: $v};
+        $cr: CellRow $c in $cr.cells;
+        $e: Cell $e != $c && $e.value == $v && $e.cellRow == $cr;
+    }
+    then{
+        $valid.addError("cell " + $c + " has a duplicate in row " + $cr.number + ". Duplicate cell" + $e);
+    }
+}
+
+rule "duplicate in cell col" {
+    when{
+        $valid: ValidPuzzle;
+        $c: Cell $c.value !== null {value: $v};
+        $cc: CellCol $c in $cc.cells;
+        $e: Cell $e != $c && $e.value == $v && $e.cellCol == $cc;
+    }
+    then {
+        $valid.addError("cell " + $c + " has a duplicate in col " + $cc.number + ". Duplicate cell" + $e);
+    }
+}
+
+rule "duplicate in cell sqr" {
+    when{
+        $valid: ValidPuzzle;
+        $c: Cell $c.value !== null {value: $v};
+        $cs: CellSqr $c in $cs.cells;
+        $e: Cell $e != $c && $e.value == $v && $e.cellSqr == $cs
+    }
+    then{
+        $valid.addError( "cell " + $c + " has duplicate in its square of nine. Duplicate cell" + $e );
+    }
+}

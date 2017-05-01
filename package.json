@@ -1,0 +1,41 @@
+{
+  "name": "sudoku-example",
+  "version": "1.0.0",
+  "description": "An example using nools to solve a sudoku puzzle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "./node_modules/eslint/bin/eslint.js src/.",
+    "eslint-fix": "npm run eslint --fix",
+    "repl": "npm run sudoku repl",
+    "solve": "npm run sudoku solve",
+    "sudoku": "node ./bin/sudoku-nools.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noolsjs/sudoku-example.git"
+  },
+  "keywords": [
+    "nools",
+    "sudoku"
+  ],
+  "author": "Doug Martin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noolsjs/sudoku-example/issues"
+  },
+  "homepage": "https://github.com/noolsjs/sudoku-example#readme",
+  "dependencies": {
+    "babel-preset-env": "^1.4.0",
+    "babel-register": "^6.24.1",
+    "lodash": "^4.17.4",
+    "nools": "^0.4.4"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3"
+  }
+}
